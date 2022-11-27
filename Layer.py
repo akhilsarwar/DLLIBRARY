@@ -1,10 +1,10 @@
 import numpy as np
+from ActivationFunctions import softmax 
 
 class Layer:
-    def __init__(self, n, activation_function, activation_function_deriv, n_prev, learning_rate):
+    def __init__(self, n, activation_function, activation_function_deriv, n_prev):
         self.n = n
         self.n_prev = n_prev
-        self.learning_rate = learning_rate
         self.activation_function = activation_function
         self.activation_function_deriv = activation_function_deriv
         self.initWeights(n, n_prev)
@@ -43,12 +43,20 @@ class Layer:
     # m - no of training examples
 
     # here input is dA[l] of dimension (n, m) where n is no of neurons in the layer and m is the no of training examples
-    def backwardPropogation(self, input):
+    def backwardPropogation(self, input, learning_rate):
         m = input.shape[1]
-        dZ = input * self.activation_function_deriv(self.z)
+        dZ = self.__dz(input)
         dW = (1 / m) * (np.matmul(dZ, np.transpose(self.input)))
         dB = (1 / m) * (np.sum(dZ, axis=1, keepdims=True))
         dA_prev = np.matmul(np.transpose(self.weights), dZ)
-        self.weights = self.weights - self.learning_rate * dW
-        self.bias = self.bias - self.learning_rate * dB
+        self.weights = self.weights - learning_rate * dW
+        self.bias = self.bias - learning_rate * dB
         return dA_prev
+
+    #to find the dz - in case of softmax activation function in the last layer since its harder to compute the gradient of softmax we can derive a direct equation for dZ
+    #dZ = (dL/dz) = (dL/da) * (da/dz)
+    def __dz(self, input):
+        if self.activation_function is softmax:
+            return input
+        else:
+            return input * self.activation_function_deriv(self.z)
