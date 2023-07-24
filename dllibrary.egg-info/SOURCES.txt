@@ -1,0 +1,12 @@
+README.md
+setup.py
+dllibrary/ActivationFunctions.py
+dllibrary/Layer.py
+dllibrary/LossFunctions.py
+dllibrary/NeuralNetwork.py
+dllibrary/__init__.py
+dllibrary.egg-info/PKG-INFO
+dllibrary.egg-info/SOURCES.txt
+dllibrary.egg-info/dependency_links.txt
+dllibrary.egg-info/requires.txt
+dllibrary.egg-info/top_level.txt

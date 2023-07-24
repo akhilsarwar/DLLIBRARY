@@ -1,5 +1,5 @@
 import numpy as np
-from ActivationFunctions import softmax 
+from dllibrary.ActivationFunctions import softmax 
 
 class Layer:
     def __init__(self, n, activation_function, activation_function_deriv, n_prev):

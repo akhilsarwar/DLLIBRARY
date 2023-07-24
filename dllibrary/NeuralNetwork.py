@@ -1,6 +1,6 @@
-from ActivationFunctions import activation_function_map, activation_function_deriv_map
-from LossFunctions import loss_functions_map, loss_functions_deriv_map
-from Layer import Layer 
+from dllibrary.ActivationFunctions import activation_function_map, activation_function_deriv_map
+from dllibrary.LossFunctions import loss_functions_map, loss_functions_deriv_map
+from dllibrary.Layer import Layer 
 
 
 class NeuralNetwork:
